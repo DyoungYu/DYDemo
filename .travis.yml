@@ -1,11 +1,11 @@
 language: objective-c
-xcode_workspace: DYDemo/DYDemo.xcworkspace
+xcode_workspace: DYDemo.xcworkspace
 xcode_scheme: DYDemo
 osx_image: xcode10.1
 
 script:
 - set -o pipefail
-- xcodebuild test -workspace "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "name=iPhone 7" -enableCodeCoverage YES | xcpretty
+- xcodebuild test -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" -destination "name=iPhone 7" -enableCodeCoverage YES | xcpretty
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
