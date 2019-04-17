@@ -1,5 +1,5 @@
 language: objective-c
-xcode_workspace: DYDemo.xcworkspace
+xcode_workspace: DYDemo/DYDemo.xcworkspace
 xcode_scheme: DYDemo
 osx_image: xcode10.1
 
