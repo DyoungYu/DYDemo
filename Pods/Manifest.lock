@@ -1,0 +1,20 @@
+PODS:
+  - OCMock (3.4.3)
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - OCMock
+  - SVProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - OCMock
+    - SVProgressHUD
+
+SPEC CHECKSUMS:
+  OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: 2d207a79a51b6ff968a3011da504262d8aa72cb8
+
+COCOAPODS: 1.5.3
