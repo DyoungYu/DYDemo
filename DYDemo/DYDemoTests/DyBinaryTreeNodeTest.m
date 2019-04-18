@@ -63,7 +63,6 @@
     //4.2 非递归翻转二叉树-层序遍历。
     [DyBinaryTreeNode invertBinaryTreeNot:tree];
     
-    
     //5.1 递归获取二叉树深度
     NSInteger depthNum = [DyBinaryTreeNode depthOfTree:tree];
     NSLog(@"深度为 == %ld\n",depthNum);

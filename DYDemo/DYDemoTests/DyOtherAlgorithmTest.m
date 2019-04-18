@@ -32,10 +32,32 @@ int maxCommonDivisor(int a, int b) {
 
 #pragma mark 二分查找
 - (void)testFindNum{
-    int num[] = {1,4,4,6,8,8,9,9,11,21,211,2222};//要针对是有序序列。
+    int num[] = {1,4,4,6,8,9,9,9,11,21,211,2222};//要针对是有序序列。
     int count = sizeof(num)/4;
-    printf("num == %d\n",findKey(num,count,4));//这种只能找到一个。
+//    printf("num == %d\n",findKey(num,count,4));//这种只能找到一个。
+    printf("🍺🍺🍺🍺num == %d\n",find_first_elem(num, 0, count-1, 99));
 }
+
+/**
+ 找到某个元素第一次出现的位置。
+ */
+int find_first_elem(int arr[],int low,int high,int elem)
+{
+    if (low>high){
+        return -1;
+    }
+    int mid = low + (high-low)/2;
+    if (arr[mid] == elem){
+        int index = find_first_elem(arr,low,mid-1,elem);//递归思想。看mid之前有木有
+        return (index == -1?mid:index);
+    }
+    else//找不到。
+        if (arr[mid]>elem)
+        return find_first_elem(arr,low,mid-1,elem);
+        return find_first_elem(arr,mid+1,high,elem);
+}
+
+
 
 int findKey(int *arr, int length, int key) {
     int min = 0, max = length - 1, mid;
@@ -81,6 +103,11 @@ int top(){
     //    assert(!empty());
     return data[count-1];
 }
+
+
+
+#pragma mark 中奖概率题
+
 
 
 @end
