@@ -10,6 +10,10 @@
 
 @interface DyOtherAlgorithmTest : XCTestCase
 
+@property (nonatomic,strong) NSMutableArray *suc_proArr;
+@property (nonatomic,strong) NSMutableArray *costArr;
+@property (nonatomic,strong) NSArray *proArr;
+
 @end
 
 @implementation DyOtherAlgorithmTest
@@ -107,7 +111,59 @@ int top(){
 
 
 #pragma mark 中奖概率题
+/**
+ 有个一元抽奖的活动，每次抽奖只花费一元钱，用户等级初始为1，抽中则上升一个等级，没中就下降一个等级，每个等级抽中的概率分别为：
+ 1级：100%
+ 2级：50%
+ 3级：25%
+ 求用户平均得花费多少钱才能抽中3级？
+ */
+/**
+ 思路：
+ 暴利解法:
+ 把一个人去抽奖抽中三等奖的所有情况都计算一遍。
+ 每一种的情况出现的概率 * 所经历的步数(花费) 
+ */
+- (void)testPrizewinningProbability{
+    _suc_proArr = @[].mutableCopy;//保存每次3级抽中的概率。
+    _costArr = @[].mutableCopy;//保存每次3级抽中的花费。
+    _proArr = @[@"1", @"0.5", @"0.25"];//每级抽中的概率。
+    
+    //开始抽奖。
+    [self startDrawCurLevel:0 prob:1 totalStep:0];
+    CGFloat averageCost = 0;
+    for (int i=0; i<_suc_proArr.count; i++) {
+        averageCost += [_suc_proArr[i] doubleValue] * [_costArr[i] doubleValue];
+    }
+    NSLog(@"🍺🍺🍺🍺🍺🍺平均消费 = %lf",averageCost);
+    
+}
+/**
+ 每次的抽奖
+ @param level 当前等级
+ @param prob 但当前的概率。
+ @param step 已进行的步骤数。
+ */
+- (void)startDrawCurLevel:(NSInteger)level prob:(CGFloat)prob totalStep:(NSInteger)step{
+    
+    CGFloat winPro = 0;
+    CGFloat losePro = 0;
+    
+    if (level != 3) {
+        winPro = [_proArr[level] floatValue];//当前级别的中奖概率
+        losePro =  1 - winPro;//当期级别不中奖的概率
+    }
+    if (level == 3 || prob < 0.0000001) {
+        [_suc_proArr addObject:@(prob)];
+        [_costArr addObject:@(step)];
+        return;
+    }
 
+    step += 1;
+    [self startDrawCurLevel:level+1 prob:prob*winPro totalStep:step];
+    if (level!=0)
+        [self startDrawCurLevel:level-1 prob:prob*losePro totalStep:step];
+}
 
 
 @end
