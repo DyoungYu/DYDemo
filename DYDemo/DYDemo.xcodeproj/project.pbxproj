@@ -25,6 +25,8 @@
 		8C62840B22670A2B0088ADD8 /* DySortAlgorithmTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C62840A22670A2B0088ADD8 /* DySortAlgorithmTest.m */; };
 		8C62840D22670A7F0088ADD8 /* DyOtherAlgorithmTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C62840C22670A7F0088ADD8 /* DyOtherAlgorithmTest.m */; };
 		8C62840F22670AFD0088ADD8 /* DyXCTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C62840E22670AFD0088ADD8 /* DyXCTestCase.m */; };
+		8C628413226813470088ADD8 /* DyBinaryTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C628412226813470088ADD8 /* DyBinaryTreeNode.m */; };
+		8C628415226815090088ADD8 /* DyBinaryTreeNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C628414226815090088ADD8 /* DyBinaryTreeNodeTest.m */; };
 		8CFE5F5122548E720078B9CA /* UITestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE5F4F22548E720078B9CA /* UITestVC.m */; };
 		DB31E5B2E546C3C724480182 /* libPods-DYDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26337B2D3237AE26339DF95A /* libPods-DYDemoUITests.a */; };
 /* End PBXBuildFile section */
@@ -79,6 +81,9 @@
 		8C62840A22670A2B0088ADD8 /* DySortAlgorithmTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DySortAlgorithmTest.m; sourceTree = "<group>"; };
 		8C62840C22670A7F0088ADD8 /* DyOtherAlgorithmTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyOtherAlgorithmTest.m; sourceTree = "<group>"; };
 		8C62840E22670AFD0088ADD8 /* DyXCTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyXCTestCase.m; sourceTree = "<group>"; };
+		8C628411226813470088ADD8 /* DyBinaryTreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyBinaryTreeNode.h; sourceTree = "<group>"; };
+		8C628412226813470088ADD8 /* DyBinaryTreeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyBinaryTreeNode.m; sourceTree = "<group>"; };
+		8C628414226815090088ADD8 /* DyBinaryTreeNodeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyBinaryTreeNodeTest.m; sourceTree = "<group>"; };
 		8CFE5F4E22548E720078B9CA /* UITestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITestVC.h; sourceTree = "<group>"; };
 		8CFE5F4F22548E720078B9CA /* UITestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITestVC.m; sourceTree = "<group>"; };
 		D39A597B8F4801763128F30D /* Pods-DYDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DYDemoUITests/Pods-DYDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,11 +180,13 @@
 		8C3FA3EA225454F100D23323 /* DYDemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				8C628410226813260088ADD8 /* BinaryTree */,
 				8C3FA3ED225454F100D23323 /* Info.plist */,
 				8C62840E22670AFD0088ADD8 /* DyXCTestCase.m */,
 				8C62840C22670A7F0088ADD8 /* DyOtherAlgorithmTest.m */,
 				8C62840A22670A2B0088ADD8 /* DySortAlgorithmTest.m */,
 				8C0EE1232266C46C000D49DC /* DyOCMockTestCase.m */,
+				8C628414226815090088ADD8 /* DyBinaryTreeNodeTest.m */,
 			);
 			path = DYDemoTests;
 			sourceTree = "<group>";
@@ -201,6 +208,15 @@
 				8CFE5F4D22548E0B0078B9CA /* UITest */,
 			);
 			path = UnitTest;
+			sourceTree = "<group>";
+		};
+		8C628410226813260088ADD8 /* BinaryTree */ = {
+			isa = PBXGroup;
+			children = (
+				8C628411226813470088ADD8 /* DyBinaryTreeNode.h */,
+				8C628412226813470088ADD8 /* DyBinaryTreeNode.m */,
+			);
+			path = BinaryTree;
 			sourceTree = "<group>";
 		};
 		8CFE5F4D22548E0B0078B9CA /* UITest */ = {
@@ -475,7 +491,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C3FA40B2254568100D23323 /* Test1.m in Sources */,
+				8C628415226815090088ADD8 /* DyBinaryTreeNodeTest.m in Sources */,
 				8C62840D22670A7F0088ADD8 /* DyOtherAlgorithmTest.m in Sources */,
+				8C628413226813470088ADD8 /* DyBinaryTreeNode.m in Sources */,
 				8C0EE1242266C46C000D49DC /* DyOCMockTestCase.m in Sources */,
 				8C62840B22670A2B0088ADD8 /* DySortAlgorithmTest.m in Sources */,
 				8C0EE1222266C3C8000D49DC /* DyMockPerson.m in Sources */,
