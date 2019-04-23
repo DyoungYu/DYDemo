@@ -125,6 +125,7 @@ int top(){
  每一种的情况出现的概率 * 所经历的步数(花费) 
  */
 - (void)testPrizewinningProbability{
+    
     _suc_proArr = @[].mutableCopy;//保存每次3级抽中的概率。
     _costArr = @[].mutableCopy;//保存每次3级抽中的花费。
     _proArr = @[@"1", @"0.5", @"0.25"];//每级抽中的概率。
@@ -136,7 +137,6 @@ int top(){
         averageCost += [_suc_proArr[i] doubleValue] * [_costArr[i] doubleValue];
     }
     NSLog(@"🍺🍺🍺🍺🍺🍺平均消费 = %lf",averageCost);
-    
 }
 /**
  每次的抽奖
@@ -158,7 +158,7 @@ int top(){
         [_costArr addObject:@(step)];
         return;
     }
-
+    
     step += 1;
     [self startDrawCurLevel:level+1 prob:prob*winPro totalStep:step];
     if (level!=0)

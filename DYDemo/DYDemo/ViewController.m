@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "UITestVC.h"
 #import "HashObj.h"
+#import "DyOperationTest.h"
 
 @interface ViewController ()
 
@@ -19,8 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self hashEqualTest];
+    DyOperationTest *opTestObj = [[DyOperationTest alloc]init];
+    [opTestObj test];
     
+    
+//    [self hashEqualTest];
 //    NSThread *thead =  [[NSThread alloc]initWithTarget:self selector:@selector(semaphoreSync) object:nil];
 //    [thead start];
 //    [self test];

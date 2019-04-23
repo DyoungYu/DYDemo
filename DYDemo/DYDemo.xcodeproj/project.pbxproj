@@ -27,6 +27,7 @@
 		8C62840F22670AFD0088ADD8 /* DyXCTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C62840E22670AFD0088ADD8 /* DyXCTestCase.m */; };
 		8C628413226813470088ADD8 /* DyBinaryTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C628412226813470088ADD8 /* DyBinaryTreeNode.m */; };
 		8C628415226815090088ADD8 /* DyBinaryTreeNodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C628414226815090088ADD8 /* DyBinaryTreeNodeTest.m */; };
+		8CB19F82226F2D8100BD4B35 /* DyOperationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB19F81226F2D8100BD4B35 /* DyOperationTest.m */; };
 		8CFE5F5122548E720078B9CA /* UITestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE5F4F22548E720078B9CA /* UITestVC.m */; };
 		DB31E5B2E546C3C724480182 /* libPods-DYDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26337B2D3237AE26339DF95A /* libPods-DYDemoUITests.a */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,8 @@
 		8C628411226813470088ADD8 /* DyBinaryTreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyBinaryTreeNode.h; sourceTree = "<group>"; };
 		8C628412226813470088ADD8 /* DyBinaryTreeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyBinaryTreeNode.m; sourceTree = "<group>"; };
 		8C628414226815090088ADD8 /* DyBinaryTreeNodeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyBinaryTreeNodeTest.m; sourceTree = "<group>"; };
+		8CB19F80226F2D8100BD4B35 /* DyOperationTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyOperationTest.h; sourceTree = "<group>"; };
+		8CB19F81226F2D8100BD4B35 /* DyOperationTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyOperationTest.m; sourceTree = "<group>"; };
 		8CFE5F4E22548E720078B9CA /* UITestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITestVC.h; sourceTree = "<group>"; };
 		8CFE5F4F22548E720078B9CA /* UITestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITestVC.m; sourceTree = "<group>"; };
 		D39A597B8F4801763128F30D /* Pods-DYDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DYDemoUITests/Pods-DYDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 		8C3FA3D1225454F000D23323 /* DYDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8CB19F7F226F2D4F00BD4B35 /* MultiThread */,
 				8C3FA4072254551C00D23323 /* UnitTest */,
 				8C3FA3D2225454F000D23323 /* AppDelegate.h */,
 				8C3FA3D3225454F000D23323 /* AppDelegate.m */,
@@ -217,6 +221,15 @@
 				8C628412226813470088ADD8 /* DyBinaryTreeNode.m */,
 			);
 			path = BinaryTree;
+			sourceTree = "<group>";
+		};
+		8CB19F7F226F2D4F00BD4B35 /* MultiThread */ = {
+			isa = PBXGroup;
+			children = (
+				8CB19F80226F2D8100BD4B35 /* DyOperationTest.h */,
+				8CB19F81226F2D8100BD4B35 /* DyOperationTest.m */,
+			);
+			path = MultiThread;
 			sourceTree = "<group>";
 		};
 		8CFE5F4D22548E0B0078B9CA /* UITest */ = {
@@ -478,6 +491,7 @@
 			files = (
 				8C3FA3D7225454F000D23323 /* ViewController.m in Sources */,
 				8C3FA3E2225454F100D23323 /* main.m in Sources */,
+				8CB19F82226F2D8100BD4B35 /* DyOperationTest.m in Sources */,
 				8CFE5F5122548E720078B9CA /* UITestVC.m in Sources */,
 				8C4945A5225B123100F08ECD /* HashObj.m in Sources */,
 				8C0EE1212266C3C8000D49DC /* DyMockPerson.m in Sources */,

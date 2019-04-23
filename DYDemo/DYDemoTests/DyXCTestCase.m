@@ -31,6 +31,29 @@
     _t1 = nil;
 }
 
+
+- (void)testBlock{
+    
+    //1、全局block __NSGlobalBlock__
+    //● 定义在函数外面的block是global类型的
+    //● 定义在函数内部的block，但是没有捕获任何自动变量
+    void (^myBlock)(void) = ^{
+
+    };
+    //全局block copy后仍然是全局block。 copy不会做任何事。
+    NSLog(@"block == %@",[myBlock copy]);
+    
+    
+    //2、堆block。
+//    捕获外部变量
+//    int a = 10;
+//    void (^myBlock)(void) = ^{
+//        NSLog(@"a == %d",a);
+//    };
+//    NSLog(@"block == %@",myBlock);
+    
+}
+
 #pragma mark 逻辑测试
 - (void)testLogic{
     //1、判断第一个和第二个参数是否相等，不等报错。
@@ -87,8 +110,6 @@
         [self stopMeasuring];
     }];
 }
-
-
 - (void)action{
     NSMutableArray * mutArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < 9999; i++) {
