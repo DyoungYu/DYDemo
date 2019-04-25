@@ -10,6 +10,7 @@
 #import "UITestVC.h"
 #import "HashObj.h"
 #import "DyOperationTest.h"
+#import "DyGCDTest.h"
 
 @interface ViewController ()
 
@@ -20,8 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    DyOperationTest *opTestObj = [[DyOperationTest alloc]init];
-    [opTestObj test];
+    DyGCDTest *pp =   [[DyGCDTest alloc]init];
+    
     
     
 //    [self hashEqualTest];
@@ -29,38 +30,6 @@
 //    [thead start];
 //    [self test];
 }
-
-
-- (void)test{
-    
-    dispatch_group_t group = dispatch_group_create();
-    
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
-    for (int i = 0; i < 10; i++)
-    {
-        
-        dispatch_group_async(group,dispatch_get_global_queue(0, 0), ^{
-            
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            
-            dispatch_group_enter(group);
-            
-            [NSThread sleepForTimeInterval:arc4random()%5];
-            NSLog(@"i=%d---thread==%@\n",i,[NSThread currentThread]);
-            
-            dispatch_semaphore_signal(semaphore);
-            dispatch_group_leave(group);
-            
-        });
-    }
-//    NSLog(@"================over");
-    
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        
-        
-    });
-}
-
 
 /**
  信号量测试。

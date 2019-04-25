@@ -12,6 +12,7 @@
 		8C0EE1212266C3C8000D49DC /* DyMockPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EE11F2266C3C8000D49DC /* DyMockPerson.m */; };
 		8C0EE1222266C3C8000D49DC /* DyMockPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EE11F2266C3C8000D49DC /* DyMockPerson.m */; };
 		8C0EE1242266C46C000D49DC /* DyOCMockTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EE1232266C46C000D49DC /* DyOCMockTestCase.m */; };
+		8C39146A227063DD007351A7 /* DyGCDTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C391469227063DD007351A7 /* DyGCDTest.m */; };
 		8C3FA3D4225454F000D23323 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3FA3D3225454F000D23323 /* AppDelegate.m */; };
 		8C3FA3D7225454F000D23323 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3FA3D6225454F000D23323 /* ViewController.m */; };
 		8C3FA3DA225454F000D23323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C3FA3D8225454F000D23323 /* Main.storyboard */; };
@@ -60,6 +61,8 @@
 		8C0EE11F2266C3C8000D49DC /* DyMockPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DyMockPerson.m; sourceTree = "<group>"; };
 		8C0EE1202266C3C8000D49DC /* DyMockPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DyMockPerson.h; sourceTree = "<group>"; };
 		8C0EE1232266C46C000D49DC /* DyOCMockTestCase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyOCMockTestCase.m; sourceTree = "<group>"; };
+		8C391468227063DD007351A7 /* DyGCDTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DyGCDTest.h; sourceTree = "<group>"; };
+		8C391469227063DD007351A7 /* DyGCDTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyGCDTest.m; sourceTree = "<group>"; };
 		8C3FA3CF225454F000D23323 /* DYDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DYDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3FA3D2225454F000D23323 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8C3FA3D3225454F000D23323 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -228,6 +231,8 @@
 			children = (
 				8CB19F80226F2D8100BD4B35 /* DyOperationTest.h */,
 				8CB19F81226F2D8100BD4B35 /* DyOperationTest.m */,
+				8C391468227063DD007351A7 /* DyGCDTest.h */,
+				8C391469227063DD007351A7 /* DyGCDTest.m */,
 			);
 			path = MultiThread;
 			sourceTree = "<group>";
@@ -490,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C3FA3D7225454F000D23323 /* ViewController.m in Sources */,
+				8C39146A227063DD007351A7 /* DyGCDTest.m in Sources */,
 				8C3FA3E2225454F100D23323 /* main.m in Sources */,
 				8CB19F82226F2D8100BD4B35 /* DyOperationTest.m in Sources */,
 				8CFE5F5122548E720078B9CA /* UITestVC.m in Sources */,
