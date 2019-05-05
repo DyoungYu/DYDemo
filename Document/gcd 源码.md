@@ -131,6 +131,7 @@ log如下：
 //tq==DISPATCH_TARGET_QUEUE_DEFAULT target类型
 if (!tq) {
 		tq = _dispatch_get_root_queue(
+		//DISPATCH_QOS_DEFAULT的值为4.
 				qos == DISPATCH_QOS_UNSPECIFIED ? DISPATCH_QOS_DEFAULT : qos, // 4
 				overcommit == _dispatch_queue_attr_overcommit_enabled)->_as_dq; // 0 1
 		if (unlikely(!tq)) {
@@ -152,6 +153,8 @@ _dispatch_get_root_queue(dispatch_qos_t qos, bool overcommit)
 	return &_dispatch_root_queues[2 * (qos - 1) + overcommit];
 }
 ```
+
+下图是数组的初始化。默认初始化了一个静态数组。
 
 ![image-20190504230511793](/Users/double/Library/Application Support/typora-user-images/image-20190504230511793.png)
 
@@ -177,6 +180,71 @@ log:
 
 ```
 #define DISPATCH_QUEUE_WIDTH_POOL (DISPATCH_QUEUE_WIDTH_FULL - 1)
+```
+
+2、全局队列的target为`[0x0]`,其他queue的target为静态数组中取值出来的。
+
++ 获取全局队列的内部实现：
+
+```
+dispatch_get_global_queue(long priority, unsigned long flags)
+{
+	dispatch_assert(countof(_dispatch_root_queues) ==
+			DISPATCH_ROOT_QUEUE_COUNT);
+
+	if (flags & ~(unsigned long)DISPATCH_QUEUE_OVERCOMMIT) {
+		return DISPATCH_BAD_INPUT;
+	}
+	dispatch_qos_t qos = _dispatch_qos_from_queue_priority(priority);
+#if !HAVE_PTHREAD_WORKQUEUE_QOS
+	if (qos == QOS_CLASS_MAINTENANCE) {
+		qos = DISPATCH_QOS_BACKGROUND;
+	} else if (qos == QOS_CLASS_USER_INTERACTIVE) {
+		qos = DISPATCH_QOS_USER_INITIATED;
+	}
+#endif
+	if (qos == DISPATCH_QOS_UNSPECIFIED) {
+		return DISPATCH_BAD_INPUT;
+	}
+	//直接去root_queue中获取。
+	return _dispatch_get_root_queue(qos, flags & DISPATCH_QUEUE_OVERCOMMIT);
+}
+```
+
+而其它的并发队列是通过`alloc`创建的。
+
+```
+dispatch_lane_t dq = _dispatch_object_alloc(vtable,
+			sizeof(struct dispatch_lane_s));
+```
+
++ 主队列的内部实现。
+
+```
+dispatch_get_main_queue(void)
+{
+	return DISPATCH_GLOBAL_OBJECT(dispatch_queue_main_t, _dispatch_main_q);
+}
+```
+
+```
+#define DISPATCH_GLOBAL_OBJECT(type, object) ((OS_OBJECT_BRIDGE type)&(object))
+```
+
+_dispatch_main_q： 通过结构体赋值。
+
+```
+struct dispatch_queue_static_s _dispatch_main_q = {
+	DISPATCH_GLOBAL_OBJECT_HEADER(queue_main),
+#if !DISPATCH_USE_RESOLVERS
+	.do_targetq = _dispatch_get_default_queue(true),
+#endif
+	.dq_state = DISPATCH_QUEUE_STATE_INIT_VALUE(1) |
+			DISPATCH_QUEUE_ROLE_BASE_ANON,
+	.dq_label = "com.apple.main-thread",
+	.dq_atomic_flags = DQF_THREAD_BOUND | DQF_WIDTH(1),
+	.dq_serialnum = 1,
+};
 ```
 
 
