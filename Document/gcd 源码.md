@@ -249,3 +249,151 @@ struct dispatch_queue_static_s _dispatch_main_q = {
 
 
 
+
+
+## 0x03 dispatch_sync
+
+```
+dispatch_sync(dispatch_queue_t dq, dispatch_block_t work)
+{
+	uintptr_t dc_flags = DC_FLAG_BLOCK;
+	if (unlikely(_dispatch_block_has_private_data(work))) {
+		return _dispatch_sync_block_with_privdata(dq, work, dc_flags);
+	}
+	_dispatch_sync_f(dq, work, _dispatch_Block_invoke(work), dc_flags);
+}
+```
+
+==>
+
+```
+_dispatch_sync_f(dispatch_queue_t dq, void *ctxt, dispatch_function_t func,
+		uintptr_t dc_flags)
+{
+	_dispatch_sync_f_inline(dq, ctxt, func, dc_flags);
+}
+```
+
+```
+_dispatch_sync_f_inline(dispatch_queue_t dq, void *ctxt,
+		dispatch_function_t func, uintptr_t dc_flags)
+{
+	//==1：串行。
+	if (likely(dq->dq_width == 1)) {
+		return _dispatch_barrier_sync_f(dq, ctxt, func, dc_flags);
+	}
+
+```
+
+
+
+```
+_dispatch_queue_try_acquire_barrier_sync(dispatch_queue_class_t dq, uint32_t tid)
+{
+	return _dispatch_queue_try_acquire_barrier_sync_and_suspend(dq._dl, tid, 0);
+}
+```
+
+
+
+```
+#define _dispatch_tid_self()		((dispatch_tid)_dispatch_thread_port())
+```
+
+```
+#define _dispatch_thread_port() pthread_mach_thread_np(_dispatch_thread_self())
+```
+
+
+
+
+
+死锁
+
+> 
+
+```
+__DISPATCH_WAIT_FOR_QUEUE__(dispatch_sync_context_t dsc, dispatch_queue_t dq)
+{
+	uint64_t dq_state = _dispatch_wait_prepare(dq);
+	if (unlikely(_dq_state_drain_locked_by(dq_state, dsc->dsc_waiter))) {
+		DISPATCH_CLIENT_CRASH((uintptr_t)dq_state,
+				"dispatch_sync called on queue "
+				"already owned by current thread");
+	}
+```
+
+通过异或判断两个值是否相等.
+
+tid:要调用的线程id。
+
+```
+_dispatch_lock_is_locked_by(dispatch_lock lock_value, dispatch_tid tid)
+{
+	// equivalent to _dispatch_lock_owner(lock_value) == tid
+	return ((lock_value ^ tid) & DLOCK_OWNER_MASK) == 0;
+}
+```
+
+
+
+
+
+## 0x03 dispatch_async
+
+```
+dispatch_async(dispatch_queue_t dq, dispatch_block_t work)
+{
+	dispatch_continuation_t dc = _dispatch_continuation_alloc();
+	uintptr_t dc_flags = DC_FLAG_CONSUME;
+	dispatch_qos_t qos;
+
+	qos = _dispatch_continuation_init(dc, dq, work, 0, dc_flags);
+	_dispatch_continuation_async(dq, dc, qos, dc->dc_flags);
+}
+```
+
+```
+_dispatch_continuation_init(dispatch_continuation_t dc,
+		dispatch_queue_class_t dqu, dispatch_block_t work,
+		dispatch_block_flags_t flags, uintptr_t dc_flags)
+{
+/
+	void *ctxt = _dispatch_Block_copy(work);
+
+	dc_flags |= DC_FLAG_BLOCK | DC_FLAG_ALLOCATED;
+	if (unlikely(_dispatch_block_has_private_data(work))) {
+		dc->dc_flags = dc_flags;
+		dc->dc_ctxt = ctxt;
+		// will initialize all fields but requires dc_flags & dc_ctxt to be set
+		return _dispatch_continuation_init_slow(dc, dqu, flags);
+	}
+
+	dispatch_function_t func = _dispatch_Block_invoke(work);
+	if (dc_flags & DC_FLAG_CONSUME) {
+		func = _dispatch_call_block_and_release;
+	}
+	return _dispatch_continuation_init_f(dc, dqu, ctxt, func, flags, dc_flags);
+}
+
+```
+
+```
+_dispatch_call_block_and_release(void *block)
+{
+	void (^b)(void) = block;
+	b();
+	Block_release(b);
+}
+```
+
+1、如何创建线程。
+
+2、如何执行。
+
+
+
+GCD源码吐血分析(1）
+
+https://blog.csdn.net/u013378438/article/details/81031938
+
