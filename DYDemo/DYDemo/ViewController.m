@@ -21,9 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    DyGCDTest *pp =   [[DyGCDTest alloc]init];
+//    DyGCDTest *pp =   [[DyGCDTest alloc]init];
     
-    
+    //死锁。
+//    dispatch_queue_t queue = dispatch_queue_create("com.bestswifter.queue", nil);
+//    dispatch_sync(queue, ^{
+//        NSLog(@"current thread = %@", [NSThread currentThread]);
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            NSLog(@"current thread = %@", [NSThread currentThread]);
+//        });
+//    });   
+//    
+//    
     
 //    [self hashEqualTest];
 //    NSThread *thead =  [[NSThread alloc]initWithTarget:self selector:@selector(semaphoreSync) object:nil];
