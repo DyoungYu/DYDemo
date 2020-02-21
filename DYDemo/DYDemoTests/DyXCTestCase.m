@@ -31,7 +31,6 @@
     _t1 = nil;
 }
 
-
 - (void)testBlock {
     
     //1、全局block __NSGlobalBlock__
@@ -98,7 +97,6 @@
         }
     }];
 }
-
 
 #pragma mark 部分测试
 - (void)testPerformance {

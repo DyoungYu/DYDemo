@@ -45,7 +45,7 @@
     //        NSLog(@"isEqual相等");
     //    }
     //    NSLog(@"obj == %p\n",obj);
-    //    NSLog(@"obj == %ld\n",(NSInteger)obj);
+    //    NSLog(@"obj == %ld\n",(NSInteger)obj);  
     //    NSLog(@"objHash == %ld\n",[obj hash]);
 }
 

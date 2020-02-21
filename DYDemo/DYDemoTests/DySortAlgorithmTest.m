@@ -20,7 +20,7 @@ num1 = num1 ^ num2;}
 #pragma mark ========================
 #pragma mark ==排序算法
 #pragma mark ========================
-- (void)testAlgorithm{
+- (void)testAlgorithm {
     int num[] = {0,3,8,2,4,0,39,4,9,8,9,0,2,33};
     int count = sizeof(num)/4;
     
@@ -41,7 +41,7 @@ num1 = num1 ^ num2;}
 /**
  打印数组
  */
-void printArr(int num[],int count){
+void printArr(int num[],int count) {
     printf("\n\n========================================\n\n");
     for (int i = 0; i < count; i++) {
         printf("%d,",num[i]);

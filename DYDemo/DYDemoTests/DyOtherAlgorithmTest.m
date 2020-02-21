@@ -19,7 +19,7 @@
 @implementation DyOtherAlgorithmTest
 
 #pragma mark 求最大公约数
-- (void)testCommonDivisor{
+- (void)testCommonDivisor {
     printf("最大公约数===%d\n",maxCommonDivisor(234,24));
 }
 
@@ -35,7 +35,7 @@ int maxCommonDivisor(int a, int b) {
 
 
 #pragma mark 二分查找
-- (void)testFindNum{
+- (void)testFindNum {
     int num[] = {1,4,4,6,8,9,9,9,11,21,211,2222};//要针对是有序序列。
     int count = sizeof(num)/4;
 //    printf("num == %d\n",findKey(num,count,4));//这种只能找到一个。
@@ -79,7 +79,7 @@ int findKey(int *arr, int length, int key) {
 }
 
 #pragma mark 模拟栈操作
-- (void)testStack{
+- (void)testStack {
     push(5);
     push(11);
     push(12);
@@ -93,17 +93,17 @@ int findKey(int *arr, int length, int key) {
 static int data[1024];
 static int count = 0;
 //1、入栈
-void push(int x){
+void push(int x) {
     //    assert(!full());//防止数组越界
     data[count++] = x;
 }
 //2、出栈
-int pop(){
+int pop() {
     //    assert(!empty());
     return data[--count];
 }
 //查看栈顶元素
-int top(){
+int top() {
     //    assert(!empty());
     return data[count-1];
 }
@@ -124,7 +124,7 @@ int top(){
  把一个人去抽奖抽中三等奖的所有情况都计算一遍。
  每一种的情况出现的概率 * 所经历的步数(花费) 
  */
-- (void)testPrizewinningProbability{
+- (void)testPrizewinningProbability {
     
     _suc_proArr = @[].mutableCopy;//保存每次3级抽中的概率。
     _costArr = @[].mutableCopy;//保存每次3级抽中的花费。
@@ -144,7 +144,7 @@ int top(){
  @param prob 但当前的概率。
  @param step 已进行的步骤数。
  */
-- (void)startDrawCurLevel:(NSInteger)level prob:(CGFloat)prob totalStep:(NSInteger)step{
+- (void)startDrawCurLevel:(NSInteger)level prob:(CGFloat)prob totalStep:(NSInteger)step {
     
     CGFloat winPro = 0;
     CGFloat losePro = 0;

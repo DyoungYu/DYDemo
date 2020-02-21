@@ -25,7 +25,7 @@
 }
 
 //MARK:>>替换返回值
-- (void)testReturnValue{
+- (void)testReturnValue {
     //1、创建普通对象。
     DyMockPerson *p1 = [[DyMockPerson alloc]init];
     //2、创建虚拟对象
@@ -42,7 +42,7 @@
 
 
 //MARK:>>验证方法是否被调用。
-- (void)testVerifyFuncIsRunning{
+- (void)testVerifyFuncIsRunning {
     DyMockPerson *f1 = [[DyMockPerson alloc]init];
     DyMockPerson *f2 = [[DyMockPerson alloc]init];
     
@@ -69,7 +69,7 @@
 
 //MARK: => 表示严格的mock
 //如果把OCMExpect和OCMStub注释掉时会报错，它要求你执行类中的所有方法，所以比较适合用来测试必须实现的方法，
-- (void)testStrictClassMock{
+- (void)testStrictClassMock {
     id mockP1 = OCMStrictClassMock([DyMockPerson class]);
     //注释掉会崩溃
     //[NSException raise:NSInternalInconsistencyException format:@"%@: unexpected method invoked: %@ %@",
