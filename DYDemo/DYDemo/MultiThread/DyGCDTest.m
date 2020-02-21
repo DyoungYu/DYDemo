@@ -19,14 +19,12 @@
 
 @implementation DyGCDTest
 
-
-
-
 #pragma mark ================
 #pragma mark 基本组合
 #pragma mark ================
+
 //MARK: => 同步+并发=串行
-- (void)gcdTest1{
+- (void)gcdTest1 {
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"syncConcurrent---begin");
     //创建同步队列。
@@ -60,7 +58,7 @@
 }
 
 //MARK: => 异步+并发=并行
-- (void)gcdTest2{
+- (void)gcdTest2 {
     
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"asyncConcurrent---begin");
@@ -94,9 +92,8 @@
     NSLog(@"asyncConcurrent---end");
 }
 
-
 //MARK: => 同步+串行=串行
-- (void)gcdTest3{
+- (void)gcdTest3 {
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"syncSerial---begin");
     
@@ -128,7 +125,7 @@
 }
 
 //MARK: => 异步+串行 = 串行
-- (void)gcdTest4{
+- (void)gcdTest4 {
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"asyncSerial---begin");
     
@@ -163,10 +160,9 @@
     NSLog(@"asyncSerial---end");
 }
 
-
 //MARK: => 主线程中调用同步执行 + 主队列
 //会造成死锁。
-- (void)gcdTest5{
+- (void)gcdTest5 {
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"syncMain---begin");
     
@@ -199,9 +195,8 @@
     NSLog(@"syncMain---end");
 }
 
-
 //MARK: => 异步执行+主队列
-- (void)gcdTest6{
+- (void)gcdTest6 {
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"asyncMain---begin");
     
@@ -234,9 +229,8 @@
     NSLog(@"asyncMain---end");
 }
 
-
 //MARK: => 线程通信
-- (void)gcdTest7{
+- (void)gcdTest7 {
     // 获取全局并发队列
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     // 获取主队列
@@ -258,13 +252,12 @@
     });
 }
 
-
 #pragma mark ================
 #pragma mark 其它方法
 #pragma mark ================
 
 //MARK: => 栅栏函数
-- (void)gcdTest8{
+- (void)gcdTest8 {
     
     //创建并发队列。
     dispatch_queue_t queue = dispatch_queue_create("net.bujige.testQueue", DISPATCH_QUEUE_CONCURRENT);
@@ -312,7 +305,7 @@
 }
 
 //MARK: => 延时执行
-- (void)gcdTest9{
+- (void)gcdTest9 {
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"asyncMain---begin");
     
@@ -323,7 +316,7 @@
 }
 
 //MARK: => 一次性代码
-- (void)gcdTest10{
+- (void)gcdTest10 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSLog(@"🍺🍺🍺🍺🍺 onceToken");
@@ -331,7 +324,7 @@
 }
 
 //MARK: => 快速迭代 apply
-- (void)gcdTest11{
+- (void)gcdTest11 {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
     NSLog(@"apply---begin");
@@ -347,10 +340,11 @@
 #pragma mark ================
 #pragma mark 队列组
 #pragma mark ================
+
 // dispatch_group_t
 // dispatch_group_async
 // dispatch_group_notify
-- (void)gcdTest12{
+- (void)gcdTest12 {
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"group---begin");
     
@@ -382,14 +376,13 @@
     });
 }
 
-
 /**
  暂停当前线程（阻塞当前线程），等待指定的 group 中的任务执行完成后，才会往下继续执行。
  1、dispatch_group_t
  2、dispatch_group_async
  3、dispatch_group_wait 阻塞。
  */
-- (void)gcdTest13{
+- (void)gcdTest13 {
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"group---begin");
     
@@ -418,13 +411,12 @@
     NSLog(@"group---end");
 }
 
-
 /**
  dispatch_group_enter、
  dispatch_group_leave
  dispatch_group_notify
  */
-- (void)gcdTest14{
+- (void)gcdTest14 {
     
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     NSLog(@"group---begin");
@@ -462,7 +454,6 @@
     });
 }
 
-
 #pragma mark ================
 #pragma mark 信号量
 #pragma mark ================
@@ -477,13 +468,14 @@
  
  信号量在等待的时候，耗能较少。
  */
-- (void)gcdTest15{
+// wait前
+- (void)gcdTest15 {
     
     dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);//初始化信号量为1.所以wait可以写在任务前面。
     for (int i = 0; i < 10; i++)
     {
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);//必须放block外面。
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);//必须放block外面。因为遍历是串行的。
         dispatch_async(globalQueue, ^{
             //先判断，再减 1。
             [NSThread sleepForTimeInterval:0.5];
@@ -493,6 +485,29 @@
     }
 }
 
+/**
+ 信号量测试。
+ */
+// wait 后
+- (void)semaphoreSync {
+
+    NSLog(@"semaphore---begin");
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+
+    for (int i =0; i<20; i++) {
+        dispatch_async(queue, ^{
+            [NSThread sleepForTimeInterval:arc4random()%3];
+            NSLog(@"i=%d---thread==%@\n",i,[NSThread currentThread]);
+            dispatch_semaphore_signal(semaphore);
+        });
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    }
+
+    NSLog(@"semaphore---end");
+}
+
+
 #pragma mark ================
 #pragma mark 线程安全
 #pragma mark ================
@@ -500,7 +515,7 @@
 /**
  非线程安全。
  */
-- (void)gcdTest16{
+- (void)gcdTest16 {
     NSLog(@"currentThread---%@",[NSThread currentThread]);  // 打印当前线程
     
     self.ticketSurplusCount = 50;
@@ -524,6 +539,7 @@
         [self saleTicketNotSafe];
     });
 }
+
 /**
  * 售卖火车票(非线程安全)
  增加信号量变得安全。
@@ -545,14 +561,25 @@
     }
 }
 
+#pragma mark ================
+#pragma mark 死锁表现
+#pragma mark ================
 
-
+- (void)gcdDeadLock {
+    dispatch_queue_t queue = dispatch_queue_create("com.bestswifter.queue", nil);
+    dispatch_sync(queue, ^{
+        NSLog(@"current thread = %@", [NSThread currentThread]);
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            NSLog(@"current thread = %@", [NSThread currentThread]);
+        });
+    });
+}
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        [self gcdTest16];
+        [self gcdTest15];
     }
     return self;
 }

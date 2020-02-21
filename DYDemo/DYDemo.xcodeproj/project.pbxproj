@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042EEEB623FFC5D900F9BBC3 /* DyOtherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 042EEEB523FFC5D900F9BBC3 /* DyOtherTest.m */; };
 		09DE811193CFC6342DE77506 /* libPods-DYDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43350469BA764514FDBB0B4B /* libPods-DYDemo.a */; };
 		6C05E5767501878985A248B6 /* libPods-DYDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B7607C27CE3CE1A6717B44C /* libPods-DYDemoTests.a */; };
 		8C0EE1212266C3C8000D49DC /* DyMockPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0EE11F2266C3C8000D49DC /* DyMockPerson.m */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042EEEB523FFC5D900F9BBC3 /* DyOtherTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyOtherTest.m; sourceTree = "<group>"; };
 		1B7607C27CE3CE1A6717B44C /* libPods-DYDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DYDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23AD397713C6A957337D4D66 /* Pods-DYDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DYDemoUITests/Pods-DYDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		26337B2D3237AE26339DF95A /* libPods-DYDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DYDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042EEEB423FFC58C00F9BBC3 /* HashObj */ = {
+			isa = PBXGroup;
+			children = (
+				8C4945A3225B123100F08ECD /* HashObj.h */,
+				8C4945A4225B123100F08ECD /* HashObj.m */,
+			);
+			path = HashObj;
+			sourceTree = "<group>";
+		};
 		8C0EE1112266C007000D49DC /* LogicTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,8 +189,6 @@
 				8C3FA3DD225454F100D23323 /* LaunchScreen.storyboard */,
 				8C3FA3E0225454F100D23323 /* Info.plist */,
 				8C3FA3E1225454F100D23323 /* main.m */,
-				8C4945A3225B123100F08ECD /* HashObj.h */,
-				8C4945A4225B123100F08ECD /* HashObj.m */,
 			);
 			path = DYDemo;
 			sourceTree = "<group>";
@@ -187,6 +196,7 @@
 		8C3FA3EA225454F100D23323 /* DYDemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				042EEEB423FFC58C00F9BBC3 /* HashObj */,
 				8C628410226813260088ADD8 /* BinaryTree */,
 				8C3FA3ED225454F100D23323 /* Info.plist */,
 				8C62840E22670AFD0088ADD8 /* DyXCTestCase.m */,
@@ -194,6 +204,7 @@
 				8C62840A22670A2B0088ADD8 /* DySortAlgorithmTest.m */,
 				8C0EE1232266C46C000D49DC /* DyOCMockTestCase.m */,
 				8C628414226815090088ADD8 /* DyBinaryTreeNodeTest.m */,
+				042EEEB523FFC5D900F9BBC3 /* DyOtherTest.m */,
 			);
 			path = DYDemoTests;
 			sourceTree = "<group>";
@@ -512,6 +523,7 @@
 			files = (
 				8C3FA40B2254568100D23323 /* Test1.m in Sources */,
 				8C628415226815090088ADD8 /* DyBinaryTreeNodeTest.m in Sources */,
+				042EEEB623FFC5D900F9BBC3 /* DyOtherTest.m in Sources */,
 				8C62840D22670A7F0088ADD8 /* DyOtherAlgorithmTest.m in Sources */,
 				8C628413226813470088ADD8 /* DyBinaryTreeNode.m in Sources */,
 				8C0EE1242266C46C000D49DC /* DyOCMockTestCase.m in Sources */,

@@ -10,10 +10,6 @@
 
 @implementation HashObj
 
-//+ (void)load{
-//    NSLog(@"LOAD");
-//}
-
 - (NSUInteger)hash {
     return [self.name hash]^self.age;
 }

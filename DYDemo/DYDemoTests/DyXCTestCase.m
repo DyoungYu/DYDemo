@@ -32,7 +32,7 @@
 }
 
 
-- (void)testBlock{
+- (void)testBlock {
     
     //1、全局block __NSGlobalBlock__
     //● 定义在函数外面的block是global类型的
@@ -55,7 +55,7 @@
 }
 
 #pragma mark 逻辑测试
-- (void)testLogic{
+- (void)testLogic {
     //1、判断第一个和第二个参数是否相等，不等报错。
     NSInteger value = [_t1 addActionP1:30 p2:10];
     XCTAssertEqual(value,40,@"出错");
@@ -101,7 +101,7 @@
 
 
 #pragma mark 部分测试
-- (void)testPerformance{
+- (void)testPerformance {
     //XCTPerformanceMetric_WallClockTime 测试标准。
     [self measureMetrics:@[XCTPerformanceMetric_WallClockTime] automaticallyStartMeasuring:NO forBlock:^{
         [self action];//提供条件
@@ -110,7 +110,7 @@
         [self stopMeasuring];
     }];
 }
-- (void)action{
+- (void)action {
     NSMutableArray * mutArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < 9999; i++) {
         NSObject * object = [[NSObject alloc] init];
