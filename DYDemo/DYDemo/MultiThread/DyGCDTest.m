@@ -575,8 +575,7 @@
     });
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self gcdTest15];
