@@ -216,6 +216,25 @@
     }
 }
 
+/// 深度遍历
++ (void)deepFirstTraverseTree:(DyBinaryTreeNode *)rootNode handler:(void(^)(DyBinaryTreeNode *treeNode))handler {
+    if (!rootNode) {
+        return;
+    }
+    NSMutableArray *stackArr = [NSMutableArray array];
+    [stackArr addObject:rootNode];
+    while (stackArr.lastObject) {
+        DyBinaryTreeNode *last = stackArr.lastObject;
+        [stackArr removeLastObject];
+        handler(last);
+        if (last.rightNode) {
+            [stackArr addObject:last.rightNode];
+        }
+        if (last.leftNode) {
+            [stackArr addObject:last.leftNode];
+        }
+    }
+}
 
 /**
  *  层次遍历（广度优先）

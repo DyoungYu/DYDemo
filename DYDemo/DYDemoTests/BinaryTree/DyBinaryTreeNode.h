@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)postOrderTraverseTree:(DyBinaryTreeNode *)rootNode handler:(void(^)(DyBinaryTreeNode *treeNode))handler;
 //层次遍历（广度优先)
 + (void)levelTraverseTree:(DyBinaryTreeNode *)rootNode handler:(void(^)(DyBinaryTreeNode *treeNode))handler;
+// 深度遍历
++ (void)deepFirstTraverseTree:(DyBinaryTreeNode *)rootNode handler:(void(^)(DyBinaryTreeNode *treeNode))handler;
 
 #pragma mark 二叉树的属性
 //二叉树的宽度

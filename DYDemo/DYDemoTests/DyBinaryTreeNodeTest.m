@@ -21,7 +21,7 @@
     //1、创建排序二叉树
     //没有键值相等的节点。
     NSArray *arr = [NSArray arrayWithObjects:@(7),@(6),@(3),@(2),@(1),@(9),@(10),@(12),@(14),@(4),@(15),nil];
-    DyBinaryTreeNode *tree = [DyBinaryTreeNode new];
+    DyBinaryTreeNode *tree = [DyBinaryTreeNode new]; // 根节点。
     tree = [DyBinaryTreeNode createTreeWithValues:arr];
     
     //2、获取二叉树某个位置上的节点（根据层序）
@@ -55,6 +55,11 @@
         [orderArray3 addObject:@(treeNode.value)];
     }];
     NSLog(@"层次遍历结果：%@\n", [orderArray3 componentsJoinedByString:@","]);
+    
+    //3.5 深度遍历
+    [DyBinaryTreeNode deepFirstTraverseTree:tree handler:^(DyBinaryTreeNode * _Nonnull treeNode) {
+        NSLog(@"深度遍历结果 == %ld\n", treeNode.value);
+    }];
     
     //4.1 递归翻转二叉树
     //7,9,10,12,14,15,6,3,4,2,1
